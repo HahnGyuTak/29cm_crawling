@@ -122,7 +122,7 @@ def crawling_img(color, prompt, sex):
 
     return clothes_info
 
-def get_top5(color, prompt, sex, origin_img_url):
+def get_top3(color, prompt, sex, origin_img_url):
     
     color_info = {"빨강색":['RED', '레드'], "초록색" : ['GREEN', '그린'], "파랑색" : ['BLUE', '블루'], "노랑색" : ['YELLOW', 'Yellow', '옐로우', "Lemon", "레몬"], 
                   "보라색" : ['PURPLE', '퍼플', "바이올렛", "라벤더", "Lavender", "LAVENDER"], '주황색':['ORANGE', '오렌지'], "브라운색":["Brown", "브라운", "BROWN", "갈색"], 
@@ -170,14 +170,14 @@ def get_top5(color, prompt, sex, origin_img_url):
             if h2 and h2.get_text() == '상품 설명':
                 detail_div = section.find('div', class_='css-gcbtkb eyc1cel2').get_text(separator="\n")
                 break
-        output_json.append({"item_url":i[4], "brand":i[2], "item_name":i[3], "price":i[5], "detail":detail_div})
+        output_json.append({"item_url":i[4], "brand":i[2], "item_name":i[3], "price":i[5], "detail":detail_div, 'img_url':i[0]})
     driver.close()
     return output_json
 # 테스트 코드 
-#dict_to_json(get_top5("초록색", "반팔티", "남성", "https://hilightbrands-kodak.co.kr/web/product/big/202204/c89215569a89334b66d3219d82a89557.jpg"), "test.json")
+#dict_to_json(get_top3("초록색", "반팔티", "남성", "https://hilightbrands-kodak.co.kr/web/product/big/202204/c89215569a89334b66d3219d82a89557.jpg"), "test.json")
 
-#dict_to_json(get_top5("빨강색", "반팔티", "남성", "https://contents.lotteon.com/itemimage/_v131630/LO/21/15/54/59/83/_2/11/55/45/98/4/LO2115545983_2115545984_1.jpg/dims/optimize/dims/resizemc/400x400"), "test.json")
+#dict_to_json(get_top3("빨강색", "반팔티", "남성", "https://contents.lotteon.com/itemimage/_v131630/LO/21/15/54/59/83/_2/11/55/45/98/4/LO2115545983_2115545984_1.jpg/dims/optimize/dims/resizemc/400x400"), "test.json")
 
-#dict_to_json(get_top5("검정색", "반팔티", "남성", "https://image.msscdn.net/images/prd_img/20210804/2049335/detail_2049335_2_500.jpg"), "test.json")
+#dict_to_json(get_top3("검정색", "반팔티", "남성", "https://image.msscdn.net/images/prd_img/20210804/2049335/detail_2049335_2_500.jpg"), "test.json")
 
-dict_to_json(get_top5("", "청바지", "남성", "https://img.29cm.co.kr/item/202308/11ee350f1ad0b19dbdfaaf46c349301f.jpg?width=700"), "test.json")
+dict_to_json(get_top3("", "청바지", "남성", "https://img.29cm.co.kr/item/202308/11ee350f1ad0b19dbdfaaf46c349301f.jpg?width=700"), "test.json")
